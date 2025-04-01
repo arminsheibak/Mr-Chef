@@ -9,7 +9,7 @@ const useRecipes = () => {
       return apiClient
         .get<{meals: meal[]}>("filter.php", {
           params: {
-            a: "Canadian",
+            a: "American",
           },
         })
         .then((res) => res.data.meals)

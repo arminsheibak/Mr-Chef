@@ -1,23 +1,34 @@
-import { HStack, Image } from "@chakra-ui/react";
+import { Box, HStack, Image, Show } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import logo from "../assets/logo.png"
+import logo from "../assets/logo.png";
+import SearchInput from "./SearchInput";
+import { MdFavoriteBorder } from "react-icons/md";
+import { IoIosInformationCircleOutline } from "react-icons/io";
+import { FaArrowTrendUp } from "react-icons/fa6";
+import colorPalette from "../theme";
+import { RiMenu4Fill } from "react-icons/ri";
 
 const Navbar = () => {
   return (
     <HStack
       paddingY="6px"
-      paddingX="45px"
+      paddingX={{ base: "15px", md: "45px" }}
       justifyContent={"space-between"}
+      align={"center"}
+      spaceX={3}
     >
       <Link to={"/"}>
         <Image src={logo} height={"60px"} />
       </Link>
-      <HStack spaceX={5} marginTop={3}>
-        <Link to={"/"}>Recipes</Link>
-        <Link to={"/"}>Trending</Link>
-        <Link to={"/"}>Favorites</Link>
-        <Link to={"/"}>About Us</Link>
+      <SearchInput />
+      <HStack hideBelow={"md"} marginTop={4} spaceX={1}>
+          <FaArrowTrendUp size={32} color={colorPalette.primary[600]} />
+          <MdFavoriteBorder size={32} color="#eb3461" />
+          <IoIosInformationCircleOutline size={32} />
       </HStack>
+      <Box hideFrom={"md"} marginTop={4} >
+      <RiMenu4Fill size={36} color={"#7a7a7a"} />
+      </Box>
     </HStack>
   );
 };

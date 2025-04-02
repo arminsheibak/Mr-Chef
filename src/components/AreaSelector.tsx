@@ -1,9 +1,11 @@
 import { useMemo } from "react";
 import useAreas from "../hooks/useAreas";
 import { Box, createListCollection, Select } from "@chakra-ui/react";
+import useRecipeQueryStore from "../store";
 
 const AreaSelector = () => {
   const { data: areas } = useAreas();
+  const setArea = useRecipeQueryStore(s => s.setArea)
   const areaCollection = useMemo(() => {
     return createListCollection({
       items:
@@ -16,7 +18,7 @@ const AreaSelector = () => {
 
   return (
     <Box width={"150px"} height={"40px"} marginLeft={{base: "20px", md: "45px"}} marginY={4} >
-          <Select.Root collection={areaCollection} width={"150px"} size={"md"} zIndex={10} position={"absolute"} >
+          <Select.Root collection={areaCollection} width={"150px"} size={"md"} zIndex={10} position={"absolute"}  >
             <Select.HiddenSelect />
             <Select.Control>
               <Select.Trigger>
@@ -29,7 +31,7 @@ const AreaSelector = () => {
             <Select.Content>
               {areas?.map((area) => {
                 return (
-                  <Select.Item key={area.strArea} item={area.strArea}>
+                  <Select.Item key={area.strArea} item={area.strArea} onClick={() => setArea(area.strArea) } >
                     {area.strArea}
                   </Select.Item>
                 );

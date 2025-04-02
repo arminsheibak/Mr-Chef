@@ -1,9 +1,12 @@
 import { Box, createListCollection, Select } from "@chakra-ui/react";
 import useCategories from "../hooks/useCategories";
 import { useMemo } from "react";
+import useRecipeQueryStore from "../store";
 
 const CategorySelector = () => {
   const { data: categories } = useCategories();
+  const setCategory = useRecipeQueryStore(s => s.setCategory)
+
   const categoryCollection = useMemo(() => {
     return createListCollection({
       items:
@@ -29,7 +32,7 @@ const CategorySelector = () => {
         <Select.Content>
           {categories?.map((category) => {
             return (
-              <Select.Item key={category.strCategory} item={category.strCategory}>
+              <Select.Item key={category.strCategory} onClick={() => setCategory(category.strCategory)} item={category.strCategory}>
                 {category.strCategory}
               </Select.Item>
             );

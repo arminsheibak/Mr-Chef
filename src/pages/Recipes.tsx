@@ -1,7 +1,8 @@
-import { Box, Card, Heading, Image, SimpleGrid } from "@chakra-ui/react";
+import { Card, Heading, Image, SimpleGrid } from "@chakra-ui/react";
 import Navbar from "../components/Navbar";
 import useRecipes from "../hooks/useRecipes";
 import colorPalette from "../theme";
+import CategorySelector from "../components/CategorySelector";
 
 const Recipes = () => {
   const { data: meals } = useRecipes();
@@ -9,6 +10,7 @@ const Recipes = () => {
     <>
       <Navbar />
       <Heading marginLeft={{base: "20px", md: "45px"}} marginTop={6} fontSize={"32px"} >Meals</Heading>
+      <CategorySelector />
       <SimpleGrid columns={{base: 1, md:2, lg:3, xl: 4}}  paddingX={{base: "20px", md: "45px"}} gapX={6} >
         {meals?.map((meal) => (
           <Card.Root

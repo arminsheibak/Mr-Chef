@@ -12,9 +12,9 @@ interface RecipeQueryStore {
 }
 
 const useRecipeQueryStore = create<RecipeQueryStore>((set) => ({
-  recipeQuery: { a: "Canadian"},
-  setArea: (a) => set(store => ({ recipeQuery: { a: a , c: store.recipeQuery.c} })),
-  setCategory: (c) => set(store => ({ recipeQuery: { c: c , a: store.recipeQuery.a} })),
+  recipeQuery: { c: "Beef"},
+  setArea: (a) => set(() => ({ recipeQuery: { a: a } })),
+  setCategory: (c) => set(() => ({ recipeQuery: { c: c} })),
 }));
 
 export default useRecipeQueryStore;

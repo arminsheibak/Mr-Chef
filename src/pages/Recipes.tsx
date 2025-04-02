@@ -5,10 +5,12 @@ import colorPalette from "../theme";
 import CategorySelector from "../components/CategorySelector";
 import AreaSelector from "../components/AreaSelector";
 import useRecipeQueryStore from "../store";
+import { useNavigate } from "react-router-dom";
 
 const Recipes = () => {
   const { data: meals } = useRecipes();
   const recipeQuery = useRecipeQueryStore(s => s.recipeQuery)
+  const navigate = useNavigate()
   return (
     <>
       <Navbar />
@@ -36,6 +38,7 @@ const Recipes = () => {
             bg={colorPalette.primary[100]}
             marginY={3}
             marginX={'auto'}
+            onClick={() => navigate(`/recipes/${meal.idMeal}`)}
           >
             <Image src={meal.strMealThumb} maxHeight={"80%"} />
             <Heading as={"h3"} paddingX={3} paddingY={2} >{meal.strMeal}</Heading>

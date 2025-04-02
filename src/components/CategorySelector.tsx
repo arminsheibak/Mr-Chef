@@ -15,7 +15,7 @@ const CategorySelector = () => {
   }, [categories]);
 
   return (
-    <Box width={"320px"} height={"40px"} marginLeft={{base: "20px", md: "45px"}} marginY={4} >
+    <Box width={"150px"} height={"40px"} marginLeft={{base: "20px", md: "45px"}} marginY={4} >
       <Select.Root collection={categoryCollection} width={"150px"} size={"md"} zIndex={10} position={"absolute"} >
         <Select.HiddenSelect />
         <Select.Control>

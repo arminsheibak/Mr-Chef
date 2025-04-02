@@ -10,10 +10,11 @@ const useRecipes = () => {
     queryKey: ["meals", recipeQuery],
     queryFn: () => {
       return apiClient
-        .get<{meals: meal[]}>("filter.php", {
+        .get<{meals: meal[]}>(recipeQuery.s ? "search.php" : "filter.php", {
           params: {
             a: recipeQuery.a,
             c: recipeQuery.c,
+            s: recipeQuery.s
           },
         })
         .then((res) => res.data.meals)

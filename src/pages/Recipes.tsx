@@ -1,20 +1,24 @@
-import { Card, Heading, HStack, Image, SimpleGrid } from "@chakra-ui/react";
+import { Card, Heading, HStack, Image, Show, SimpleGrid } from "@chakra-ui/react";
 import Navbar from "../components/Navbar";
 import useRecipes from "../hooks/useRecipes";
 import colorPalette from "../theme";
 import CategorySelector from "../components/CategorySelector";
 import AreaSelector from "../components/AreaSelector";
+import useRecipeQueryStore from "../store";
 
 const Recipes = () => {
   const { data: meals } = useRecipes();
+  const recipeQuery = useRecipeQueryStore(s => s.recipeQuery)
   return (
     <>
       <Navbar />
       <Heading marginLeft={{base: "20px", md: "45px"}} marginTop={6} fontSize={"32px"} >Meals</Heading>
-      <HStack width={"310px"} >
-        <CategorySelector />
-        <AreaSelector />
-      </HStack>
+      <Show when={!recipeQuery.s}>
+        <HStack width={"310px"} >
+          <CategorySelector />
+          <AreaSelector />
+        </HStack>
+      </Show>
       <SimpleGrid columns={{base: 1, md:2, lg:3, xl: 4}}  paddingX={{base: "20px", md: "45px"}} gapX={6} >
         {meals?.map((meal) => (
           <Card.Root

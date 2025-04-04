@@ -1,4 +1,7 @@
-import { Box, HStack, Image } from "@chakra-ui/react";
+import {
+  HStack,
+  Image,
+} from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import SearchInput from "./SearchInput";
@@ -6,7 +9,7 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import { FaArrowTrendUp } from "react-icons/fa6";
 import colorPalette from "../theme";
-import { RiMenu4Fill } from "react-icons/ri";
+import NavbarMenu from "./NavbarMenu";
 
 const Navbar = () => {
   return (
@@ -22,13 +25,15 @@ const Navbar = () => {
       </Link>
       <SearchInput />
       <HStack hideBelow={"md"} marginTop={4} spaceX={1}>
-          <FaArrowTrendUp size={32} color={colorPalette.primary[600]} />
+        <FaArrowTrendUp size={32} color={colorPalette.primary[600]} />
+        <Link to={"/favorites"}>
           <MdFavoriteBorder size={32} color="#eb3461" />
+        </Link>
+        <Link to={"https://github.com/arminsheibak"}>
           <IoIosInformationCircleOutline size={32} />
+        </Link>
       </HStack>
-      <Box hideFrom={"md"} marginTop={4} >
-      <RiMenu4Fill size={36} color={"#7a7a7a"} />
-      </Box>
+      <NavbarMenu />
     </HStack>
   );
 };

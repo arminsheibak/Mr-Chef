@@ -9,14 +9,19 @@ import {
   HStack,
   Flex,
   VStack,
+  Show,
 } from "@chakra-ui/react";
 import Navbar from "../components/Navbar";
 import { BiCategory, BiWorld } from "react-icons/bi";
 import IngredientTable from "../components/IngredientTable";
+import Like from "../components/Like";
+import Dislike from "../components/Dislike";
+import { useSavedMealStore } from "../store";
 
 const RecipeDetail = () => {
   const { slug } = useParams();
   const { data: meal } = useRecipe(slug!);
+  const savedMeals = useSavedMealStore((s) => s.savedMeals);
 
   return (
     <>
@@ -55,6 +60,20 @@ const RecipeDetail = () => {
                 <BiWorld />
                 <Text>{meal?.strArea}</Text>
               </HStack>
+              <Box position={"relative"} >
+                <Like meal={meal!} />
+              <Show
+                when={
+                  savedMeals.filter(
+                    (saveMeal) => saveMeal.idMeal === meal?.idMeal
+                  ).length > 0
+                }
+              >
+                <Box position={"absolute"} top={0} left={0} >
+                  <Dislike meal={meal!} />
+                </Box>
+              </Show>
+              </Box>
             </Flex>
             <Box hideBelow="md" marginTop={8} paddingX={"10px"}>
               <Text>Instructions: </Text>
@@ -82,15 +101,19 @@ const RecipeDetail = () => {
             </Text>
           </Box>
         </Box>
-          <Box marginY={10} hideFrom={"lg"} height={{base: "250px", md: "450px"}}  >
-            <iframe
-              width="100%"
-              height="100%"
-              src={`https://www.youtube.com/embed/${
-                meal?.strYoutube.split("?v=")[1]
-              }`}
-            ></iframe>
-          </Box>
+        <Box
+          marginY={10}
+          hideFrom={"lg"}
+          height={{ base: "250px", md: "450px" }}
+        >
+          <iframe
+            width="100%"
+            height="100%"
+            src={`https://www.youtube.com/embed/${
+              meal?.strYoutube.split("?v=")[1]
+            }`}
+          ></iframe>
+        </Box>
       </Box>
     </>
   );

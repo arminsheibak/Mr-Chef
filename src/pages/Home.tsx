@@ -1,4 +1,4 @@
-import { Box, Heading, HStack, Image } from "@chakra-ui/react";
+import { Box, Heading, HStack, Image, VStack } from "@chakra-ui/react";
 import bg from "../assets/bg.jpg";
 import SearchInput from "../components/SearchInput";
 import { Link } from "react-router-dom";
@@ -18,7 +18,7 @@ const Home = () => {
         <Image src={logo} height={"60px"} />
       </Link>
       <HStack spaceX={5} marginTop={3}>
-        <Link to={"/"}>Recipes</Link>
+        <Link to={"/recipes"}>Recipes</Link>
         <Link to={"/"}>Trending</Link>
         <Link to={"/"}>Favorites</Link>
         <Link to={"/"}>About Us</Link>
@@ -32,6 +32,8 @@ const Home = () => {
         <Box width={"46%"} >
           <SearchInput />
         </Box>
+        <VStack marginTop={10} width={"40%"} justify="center" >
+        </VStack>
       </Box>
     </>
   );

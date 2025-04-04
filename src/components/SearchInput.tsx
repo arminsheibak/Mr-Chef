@@ -20,7 +20,7 @@ const SearchInput = () => {
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             setSearch(inputRef.current?.value || "");
-            navigate("/recipes");
+            navigate("/recipes/search");
             if (inputRef.current) inputRef.current.value = "";
           }
         }}
@@ -30,7 +30,7 @@ const SearchInput = () => {
         backgroundColor={colorPalette.primary[500]}
         onClick={() => {
           setSearch(inputRef.current?.value || "");
-          navigate("/recipes");
+          navigate("/recipes/search");
           if (inputRef.current) inputRef.current.value = "";
         }}
       >
